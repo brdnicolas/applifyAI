@@ -64,6 +64,7 @@ export const Column = ({ cards, id, color, icon, title }: ColumnProps) => {
                     {...provided.dragHandleProps}
                   >
                     <Card
+                      applicationId={card.id}
                       onDelete={() => handleOnDelete(Number(card.id))}
                       avatar={card.companyImageUrl}
                       company={card.company}

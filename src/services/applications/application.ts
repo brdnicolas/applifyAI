@@ -43,3 +43,7 @@ export const scrapApplication = async (jobOfferUrl: string): Promise<Application
     })
     .then((response) => response.data)
 }
+
+export const getApplicationById = async (applicationId: number): Promise<Application> => {
+  return api.get(`/applications/${applicationId}`).then((response) => response.data)
+}

@@ -66,14 +66,16 @@ export const ButtonSecondary = ({ children, className, onClick, type = 'button' 
 type IconButtonProps = {
   iconName: IconName
   onClick?: () => void
+  className?: string
 }
 
-export const IconButtonPrimary = ({ iconName, onClick }: IconButtonProps) => {
+export const IconButtonPrimary = ({ iconName, onClick, className }: IconButtonProps) => {
   return (
     <button
       onClick={onClick}
       className={clsx(
-        'transition-all cursor-pointer p-1 flex items-center justify-center rounded-2 w-5 h-5 border-[1px] border-gray-600 bg-gray-800 text-gray-50  hover:text-gray-500'
+        'transition-all cursor-pointer p-2 flex items-center justify-center rounded-2 border-[1px] border-gray-600 bg-gray-800 text-gray-400  hover:text-gray-100',
+        className
       )}
     >
       <Icon name={iconName} />
@@ -81,12 +83,13 @@ export const IconButtonPrimary = ({ iconName, onClick }: IconButtonProps) => {
   )
 }
 
-export const IconButtonSecondary = ({ iconName, onClick }: IconButtonProps) => {
+export const IconButtonSecondary = ({ iconName, onClick, className }: IconButtonProps) => {
   return (
     <button
       onClick={onClick}
       className={clsx(
-        'transition-all cursor-pointer p-1 flex items-center justify-center rounded-2 w-5 h-5 bg-white text-gray-900  hover:text-gray-400'
+        'transition-all cursor-pointer p-2 flex items-center justify-center rounded-2 bg-white text-gray-900  hover:text-gray-400',
+        className
       )}
     >
       <Icon name={iconName} />

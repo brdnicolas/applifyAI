@@ -31,7 +31,7 @@ export const Column = ({ cards, id, color, icon, title }: ColumnProps) => {
   const handleOnDelete = (cardId: number) => {
     deleteApplicationById(Number(cardId))
     dispatchApplications(deleteApplication({ id: cardId }))
-    dispatchUser(decreaseApplicationsNumber(-1))
+    dispatchUser(decreaseApplicationsNumber(1))
   }
 
   return (
@@ -64,6 +64,7 @@ export const Column = ({ cards, id, color, icon, title }: ColumnProps) => {
                     {...provided.dragHandleProps}
                   >
                     <Card
+                      applicationId={card.id}
                       onDelete={() => handleOnDelete(Number(card.id))}
                       avatar={card.companyImageUrl}
                       company={card.company}

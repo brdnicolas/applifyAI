@@ -74,10 +74,15 @@ export const AddApplicationModal = ({ show, onClose }: AddApplicationModalProps)
 
     const formattedDate = dayjs(application.applicationDate).format(API_DATE_FORMAT)
     createApplication({ ...application, applicationDate: formattedDate })
-    dispatchApplications(addApplication({ application: { ...application, applicationDate: formattedDate } }))
-    dispatchUser(increasedApplicationsNumber(1))
-    onClose()
-    alert({ type: 'success', message: 'Candidature créée !' })
+      .then((newApplication) => {
+        dispatchApplications(addApplication({ application: newApplication }))
+        dispatchUser(increasedApplicationsNumber(1))
+        onClose()
+        alert({ type: 'success', message: 'Candidature créée !' })
+      })
+      .catch(() => {
+        alert({ type: 'error', message: 'Une erreur est survenue' })
+      })
   }
 
   const handleOnJobUrlChange = async (e: React.ChangeEvent<HTMLInputElement>) => {

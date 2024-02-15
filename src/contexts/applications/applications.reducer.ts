@@ -10,11 +10,6 @@ export const initialState: ApplicationsState = {
 }
 
 export const applicationsReducer: Reducer<ApplicationsState, ApplicationsActions> = (state = initialState, action) => {
-  const higherId = [...state.applied, ...state.relaunched, ...state.interviewObtained, ...state.archived].reduce(
-    (acc, x) => (x.id > acc ? x.id : acc),
-    0
-  )
-
   switch (action.type) {
     case EApplicationsActions.SET_APPLICATIONS:
       if (action.payload.target) {
@@ -31,14 +26,7 @@ export const applicationsReducer: Reducer<ApplicationsState, ApplicationsActions
     case EApplicationsActions.ADD_APPLICATION:
       return {
         ...state,
-        applied: [
-          ...state.applied,
-          {
-            ...action.payload.application,
-            id: higherId + 1,
-            userId: -1
-          }
-        ]
+        applied: [action.payload.application, ...state.applied]
       }
     case EApplicationsActions.DELETE_APPLICATION:
       return {

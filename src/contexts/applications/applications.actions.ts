@@ -25,13 +25,11 @@ export const setApplications = (args: {
 type AddApplication = {
   type: EApplicationsActions.ADD_APPLICATION
   payload: {
-    application: { job: string; company: string; jobOfferUrl?: string; applicationDate: string }
+    application: MinimalApplication
   }
 }
 
-export const addApplication = (args: {
-  application: { job: string; company: string; jobOfferUrl?: string; applicationDate: string }
-}): AddApplication => ({
+export const addApplication = (args: { application: MinimalApplication }): AddApplication => ({
   type: EApplicationsActions.ADD_APPLICATION,
   payload: args
 })
